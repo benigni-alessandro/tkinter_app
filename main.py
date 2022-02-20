@@ -7,7 +7,7 @@ ws = tkinter.Tk()
 ws.title("Estraer pdf text :D")
 ws.geometry('500x700')
 ws.config(bg='yellow')
-
+filetxt = ""
 
 
 #background
@@ -28,22 +28,29 @@ istruccion.pack(fill=tkinter.X)
 istruccion.place(x=150, y = 5)
 
 text_caricamento = tkinter.StringVar()
-button = tkinter.Button(ws, textvariable= text_caricamento, command = lambda:loading(), bg="red", fg="white", width=10, height=3)
-text_caricamento.set("Select")
+button = tkinter.Button(ws, textvariable= text_caricamento, command = lambda:loading(filetxt), bg="yellow", fg="black", 
+width=12, height=3, relief = "groove" )
+text_caricamento.set("SELECT")
 button.place(x=220, y = 150)
 
 
-def loading():
-    text_caricamento.set("loading file")
+def loading(filetxt):
+    text_caricamento.set("LOADING FILE")
     file = askopenfile(parent=ws, mode="rb", title="Choose a file", filetype=[("Pdf file","*.pdf")])
     if file:
-        print('gg')
+        print('FILE UPLOADED')
         read_file = PyPDF2.PdfFileReader(file)
-        page = read_file.getPage(0)
-        text_file = page.extractText()
-        text_box = tkinter.Text(ws, height= 50, width = 50)
-        text_box.insert(1.0, text_file)
+        n_pages = read_file.getNumPages()
+        i=0
+        for i in range(n_pages):
+            page = read_file.getPage(i)
+            text_page = page.extractText()
+            filetxt = filetxt + text_page 
+            i=i+1
+        print(i)
+        text_box = tkinter.Text(ws, height= 50, width = 50) 
+        text_box.insert(1.0, filetxt)
         text_box.place(x=50, y=250)
-
+        text_caricamento.set("UPLOADED")
        
 ws.mainloop()
