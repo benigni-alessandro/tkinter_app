@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 from tkinter.filedialog import askopenfile
 # ventana
 ws = tkinter.Tk()
-ws.title("Estraer pdf text :D")
+ws.title("Extract text from PDF files")
 ws.geometry('500x700')
 ws.config(bg='yellow')
 filetxt = ""
@@ -23,7 +23,7 @@ label.place(x=0, y=0)
   
 
 #reglas
-istruccion = tkinter.Label(ws, text="Elegir file pdf desde tu ordenador...", bg="black", fg="white", font=15)
+istruccion = tkinter.Label(ws, text="Choose a pdf file...", bg="black", fg="white", font=15)
 istruccion.pack(fill=tkinter.X)
 istruccion.place(x=150, y = 5)
 
