@@ -23,9 +23,10 @@ label.place(x=0, y=0)
   
 
 #reglas
-istruccion = tkinter.Label(ws, text="Choose a pdf file...", bg="black", fg="white", font=15)
+istruccion = tkinter.Label(ws, text="           Choose a pdf file...", bg="orange", fg="white", font=15)
+
+istruccion.place(x=300, y = 5)
 istruccion.pack(fill=tkinter.X)
-istruccion.place(x=150, y = 5)
 
 text_caricamento = tkinter.StringVar()
 button = tkinter.Button(ws, textvariable= text_caricamento, command = lambda:loading(filetxt), bg="yellow", fg="black", 
@@ -45,10 +46,10 @@ def loading(filetxt):
         for i in range(n_pages):
             page = read_file.getPage(i)
             text_page = page.extractText()
-            filetxt = filetxt + text_page 
+            filetxt = filetxt + text_page
             i=i+1
         print(i)
-        text_box = tkinter.Text(ws, height= 50, width = 50) 
+        text_box = tkinter.Text(ws, height= 50, width = 65, font=("sans-serif", 8 , "normal"), fg="black") 
         text_box.insert(1.0, filetxt)
         text_box.place(x=50, y=250)
         text_caricamento.set("UPLOADED")
